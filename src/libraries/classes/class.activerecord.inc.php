@@ -17,6 +17,10 @@ class activerecord extends database
 		$this->setup($table_name, $pk_field_name, $pk_field_value, $allowed_fields);
 	}
 	
+	// create
+	// delete
+	// find
+	
 	public function __set(string $field_name, string $field_value)
 	{
 		$sql="UPDATE `{$this->table_name}` SET `{$field_name}`=:field_value WHERE `{$this->pk_field_name}`=:pk_field_value;";

@@ -17,3 +17,5 @@ PHP based Active Records - slickest?
   * Flag object
   * List object
   * Search object
+  * Safeguard with allowed fields only
+  * Expand to objects
