@@ -1,7 +1,6 @@
 <?php
 class activerecord extends database
 {
-	// get columns
 	private $table_name;
 	private $pk_field_name;
 	private $pk_field_value;
@@ -17,26 +16,26 @@ class activerecord extends database
 	
 	public function __set(string $field_name, string $field_value)
 	{
-		# UPDATE
 		$sql="UPDATE `{$this->table_name}` SET `{$field_name}`=:field_value WHERE `{$this->pk_field_name}`=:pk_field_value;";
+		
 		$statement = $this->connection->prepare($sql);
 		$statement->bindValue(":field_value", $field_value);
 		$statement->bindValue(":pk_field_value", $this->pk_field_value);
+		
 		$statement->execute();
 	}
 	
-	public function __get(string $field_name)
+	public function __get(string $field_name): string
 	{
-		# SELECT
-		$sql="SELECT `{$field_name}` FROM `{$this->table_name}` WHERE `{$this->pk_field_name}`='{$this->pk_field_value}';";
+		$sql="SELECT `{$field_name}` FROM `{$this->table_name}` WHERE `{$this->pk_field_name}`=:pk_field_value LIMIT 1;";
+		
 		$statement = $this->connection->prepare($sql);
+		$statement->bindValue(":pk_field_value", $this->pk_field_value);
 		$statement->execute();
 		
 		$result = $statement->fetch(\PDO::FETCH_ASSOC);
-		
-		#print_r($result);
-		return $result[$field_name];		
-		#return $field_name;
+
+		return $result[$field_name]??null;		
 	}
 
 	protected function setup(string $table_name, string $pk_field_name, $pk_field_value, array $allowed_fields)

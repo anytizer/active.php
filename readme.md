@@ -2,7 +2,7 @@
 
 PHP based Active Records
 
-Max Usage of:
+## Uses:
 
   * PHP's __set, __get calls
-  * MySQL field values be always passed inside quotes
+  * MySQL field values be can be passed inside quotes
