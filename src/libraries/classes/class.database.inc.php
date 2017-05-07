@@ -1,4 +1,6 @@
 <?php
+namespace common;
+
 abstract class database
 {
 	protected $connection;

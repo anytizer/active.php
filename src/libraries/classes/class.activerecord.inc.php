@@ -1,4 +1,7 @@
 <?php
+namespace common;
+use common\database;
+
 class activerecord extends database
 {
 	private $table_name;
