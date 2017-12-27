@@ -1,6 +1,8 @@
 <?php
 namespace common;
+
 use common\database;
+use \PDO;
 
 class activerecord extends database
 {
@@ -40,7 +42,7 @@ class activerecord extends database
 		$statement->bindValue(":pk_field_value", $this->pk_field_value);
 		$statement->execute();
 		
-		$result = $statement->fetch(\PDO::FETCH_ASSOC);
+		$result = $statement->fetch(PDO::FETCH_ASSOC);
 
 		return $result[$field_name]??null;		
 	}
